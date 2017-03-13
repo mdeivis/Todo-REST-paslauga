@@ -1,0 +1,31 @@
+{
+  "name": "lab2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdeivis/Todo-REST-paslauga.git"
+  },
+  "author": "Deividas Maciejauskas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdeivis/Todo-REST-paslauga/issues"
+  },
+  "homepage": "https://github.com/mdeivis/Todo-REST-paslauga#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.5",
+    "nodemon": "^1.11.0",
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1"
+  }
+}

@@ -1,0 +1,5 @@
+/node_modules
+.vscode
+apidoc
+npm-debug.log
+TODO.txt
