@@ -1,6 +1,7 @@
 const httpStatuses = require('http-codes');
 
 const dataValidation = (req, res, next) => {
+    // Here we can create function for each rule. 
     if (!req.body) {
         res.status(httpStatuses.BAD_REQUEST).send('Data is required');
     } else {
@@ -9,8 +10,6 @@ const dataValidation = (req, res, next) => {
         } else if (req.body.name.length > 100) {
             res.status(httpStatuses.BAD_REQUEST).send('Name is to long. Max length 100 characters');
         }
-        
-        console.log(req.body.name.length)
     }
     
     next();
