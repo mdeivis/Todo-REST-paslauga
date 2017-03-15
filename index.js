@@ -1,3 +1,5 @@
 const app = require('./expressApp');
 
-app.listen(8080);
+const port = process.env.PORT || 3004;
+
+app.listen(port);
