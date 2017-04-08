@@ -1,3 +1,5 @@
+const TodoModel = require('./dataset');
+
 const dataSet = data => ({
     id: data.id || new Date().getTime(),
     name: data.name || 'wop wop', //todo delete default value
@@ -11,73 +13,65 @@ const todos = [];
 
 const getTodos = () => {
     return new Promise((resolve, reject) => {
-         resolve(todos);
+         TodoModel.find({}, ((err, docs) => {
+             if (err) {
+                 reject(err);
+             }
 
-         // if some err
-         // reject('A, an error! very bad!');
+             resolve(docs);
+         }));
      });
 }
 
 const create = data => {
      return new Promise((resolve, reject) => {
-         const newTodo = dataSet(data);
-         todos.push(dataSet(data));
+         const todo = new TodoModel(data);
+         todo.save((err, doc) => {
+            if (err) {
+                reject(err);
+            }
 
-         resolve(newTodo);
-
-         // if some err
-         // reject('A, an error!');
+             resolve(doc);
+         });
      });
 }
 
 const getById = id => {
     return new Promise((resolve, reject) => {
+        TodoModel.findOne({ _id: id }, ((err, doc) => {
+            if (err) {
+                reject(err);
+            }
 
-         // id (from params) comes like string. So === (type) validation does not work.
-         const todo = todos.filter(todo => todo.id == id);
-
-         if (todo && todo.length) {
-             resolve(todo);
-         }
-
-         reject('Todo not found :( (Don\'t cheat and enter correct id :)');
-     });
+            resolve(doc);
+        }));
+    });
 }
 
 
 const remove = id => {
     return new Promise((resolve, reject) => {
-         const oldLenght = todos.length;
-        let removedItem = {};
-        // id (from params) comes like string. So === (type) validation does not work.
-        todos.forEach((todo, index) => {
-            if (todo.id == id) {
-                removedItem = todos[index];
-                todos.splice(index, 1);
+        TodoModel.remove({ _id: id }, ((err, doc) => {
+            if (err) {
+                reject(err);
             }
-        });
 
-        if (oldLenght !== todos.length) {
-            resolve(removedItem);
-        }
-
-         reject('Todo not found :( (Don\'t cheat and enter correct id :)');
+            resolve(doc);
+        }))
      });
 }
 
 const update = (id, data) => {
     return new Promise((resolve, reject) => {
-         // id (from params) comes like string. So === (type) validation does not work.
-        let todo = todos.find(todo => todo.id == id);
+        data.updateDate = new Date();
 
-        if (!todo) {
-            return reject('Todo not found :( (Don\'t cheat and enter correct id :)')
-        }
+        TodoModel.update({ _id: id }, data, { new: true }, ((err, doc) => {
+            if (err) {
+                reject(err);
+            }
 
-        todo.updateDate = new Date();
-        todo = dataSet(data);
-
-        resolve(todo);
+            resolve(doc);
+        }));
      });
 }
 

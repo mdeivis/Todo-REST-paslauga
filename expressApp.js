@@ -1,6 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-var cors = require('cors');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+const config = require('./config/database');
+
+mongoose.connect(config.database);
 
 const todoRouter = require('./todo/todoAppRouter');
 

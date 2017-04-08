@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "apidoc": "apidoc -i todoAppRouter/ -o apidoc/"
+    "apidoc": "apidoc -i ./ -o apidoc/"
   },
   "repository": {
     "type": "git",
